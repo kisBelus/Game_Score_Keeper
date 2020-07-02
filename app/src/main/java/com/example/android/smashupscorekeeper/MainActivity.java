@@ -3,6 +3,7 @@ package com.example.android.smashupscorekeeper;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,15 +12,27 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    int pointPlayerA = 0, pointPlayerB = 0;
-    int scorePlayerA = 0, scorePlayerB = 0;
+    PlayerClass playerOne;
+    PlayerClass playerTwo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        playerOne = new PlayerClass(1);
+        playerTwo = new PlayerClass(2);
+
+        TextView playerOneName = (TextView) findViewById(R.id.player_one_name);
+        TextView playerTwoName = (TextView) findViewById(R.id.player_two_name);
+        playerOneName.setText(playerOne.playerName);
+        playerTwoName.setText(playerTwo.playerName);
     }
 
+    /**
+     * Options Menu Items
+     * TODO: add new player, player select...
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu options from the res/menu/menu_editor.xml file.
@@ -36,56 +49,57 @@ public class MainActivity extends AppCompatActivity {
             case R.id.reset:
                 reset();
                 return true;
+            case R.id.player_select:
+                Intent i = new Intent(this,PlayerSelect.class);
+                startActivity(i);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void reset(){
-
-        scorePlayerA = 0;
-        scorePlayerB = 0;
-        pointPlayerA = 0;
-        pointPlayerB = 0;
+        playerOne.reset();
+        playerTwo.reset();
         scoreUpdater();
     }
 
     public void increasePlayerOne(View v){
         TextView points = (TextView) findViewById(R.id.player_one_score_change);
-        pointPlayerA++;
-        if(pointPlayerA>0){
-            points.setText("+"+pointPlayerA);
+        playerOne.points++;
+        if(playerOne.points>0){
+            points.setText("+"+playerOne.points);
         }else{
-            points.setText(""+pointPlayerA);
+            points.setText(""+playerOne.points);
         }
     }
 
     public void increasePlayerTwo(View v){
         TextView points = (TextView) findViewById(R.id.player_two_score_change);
-        pointPlayerB++;
-        if(pointPlayerB>0){
-            points.setText("+"+pointPlayerB);
+        playerTwo.points++;
+        if(playerTwo.points>0){
+            points.setText("+"+playerTwo.points);
         }else{
-            points.setText(""+pointPlayerB);
+            points.setText(""+playerTwo.points);
         }
     }
 
     public void decreasePlayerOne(View v){
         TextView points = (TextView) findViewById(R.id.player_one_score_change);
-        pointPlayerA--;
-        if(pointPlayerA>0){
-            points.setText("+"+pointPlayerA);
+        playerOne.points--;
+        if(playerOne.points>0){
+            points.setText("+"+playerOne.points);
         }else{
-            points.setText(""+pointPlayerA);
+            points.setText(""+playerOne.points);
         }
     }
 
     public void decreasePlayerTwo(View v){
         TextView points = (TextView) findViewById(R.id.player_two_score_change);
-        pointPlayerB--;
-        if(pointPlayerB>0){
-            points.setText("+"+pointPlayerB);
+        playerTwo.points--;
+        if(playerTwo.points>0){
+            points.setText("+"+playerTwo.points);
         }else{
-            points.setText(""+pointPlayerB);
+            points.setText(""+playerTwo.points);
         }
     }
     public void updateScore(View v){
@@ -97,14 +111,14 @@ public class MainActivity extends AppCompatActivity {
         TextView pointsA = (TextView) findViewById(R.id.player_one_score_change);
         TextView scoreB = (TextView) findViewById(R.id.player_two_score);
         TextView pointsB = (TextView) findViewById(R.id.player_two_score_change);
-        scorePlayerA+=pointPlayerA;
-        scorePlayerB+=pointPlayerB;
-        pointPlayerA=0;
-        pointPlayerB=0;
-        pointsA.setText(""+pointPlayerA);
-        scoreA.setText(""+scorePlayerA);
-        pointsB.setText(""+pointPlayerB);
-        scoreB.setText(""+scorePlayerB);
+        playerOne.score+=playerOne.points;
+        playerTwo.score+=playerTwo.points;
+        playerOne.points=0;
+        playerTwo.points=0;
+        pointsA.setText(""+playerOne.points);
+        scoreA.setText(""+playerOne.score);
+        pointsB.setText(""+playerTwo.points);
+        scoreB.setText(""+playerTwo.score);
     }
 
 }

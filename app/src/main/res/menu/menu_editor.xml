@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:title="Reset"
+        android:title="Reset Score"
         android:id="@+id/reset"/>
+    <item
+        android:id="@+id/player_select"
+        android:title="Select Player"/>
 </menu>

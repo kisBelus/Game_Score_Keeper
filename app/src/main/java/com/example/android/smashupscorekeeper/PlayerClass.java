@@ -5,12 +5,12 @@ public class PlayerClass {
     public int points;
     public int playerN;
     public String playerName;
+    public int playerID;
 
-    public PlayerClass(int num) {
+    public PlayerClass(String name) {
         score=0;
         points=0;
-        playerN=num;
-        playerName = "player "+playerN;
+        playerName = name;
     }
 
     public void reset(){

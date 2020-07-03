@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".PlayerInfoSelect">
 
     <ImageView
         android:layout_width="match_parent"
@@ -19,52 +19,62 @@
         android:orientation="vertical"
         android:gravity="center_vertical">
 
-        <TextView
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="0.8"
             android:background="@android:color/darker_gray"
             android:gravity="center_horizontal"
-            android:paddingTop="50dp"
-            android:paddingBottom="50dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:layout_margin="30dp"
-            android:text="Score"
+            android:text="Ayumi"
             android:textAllCaps="true"
             android:textColor="@android:color/white"
             android:textSize="30sp"
-            android:onClick="openPlayerSelect"/>
-        <TextView
+            android:onClick="openPlayerInfoScreen"/>
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="0.8"
             android:background="@android:color/darker_gray"
             android:gravity="center_horizontal"
-            android:paddingTop="50dp"
-            android:paddingBottom="50dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:layout_margin="30dp"
-            android:text="Leader Board"
+            android:text="Bela"
             android:textAllCaps="true"
             android:textColor="@android:color/white"
-            android:textSize="30sp"
-            android:onClick="openLeaderBoard"/>
+            android:textSize="30sp" />
 
-        <TextView
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="0.8"
             android:background="@android:color/darker_gray"
             android:gravity="center_horizontal"
-            android:paddingTop="50dp"
-            android:paddingBottom="50dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:layout_margin="30dp"
-            android:text="Player Info"
+            android:text="etc."
             android:textAllCaps="true"
             android:textColor="@android:color/white"
-            android:textSize="30sp"
-            android:onClick="openPlayerInfoSelect"/>
+            android:textSize="30sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.8"
+            android:background="@android:color/darker_gray"
+            android:gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:layout_margin="30dp"
+            android:text="etc."
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+
     </LinearLayout>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

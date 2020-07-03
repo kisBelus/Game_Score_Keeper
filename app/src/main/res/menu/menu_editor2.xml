@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="delete player"
+        android:id="@+id/delete"/>
+    <item
+        android:title="Edit Name"
+        android:id="@+id/edit_name"/>
+</menu>

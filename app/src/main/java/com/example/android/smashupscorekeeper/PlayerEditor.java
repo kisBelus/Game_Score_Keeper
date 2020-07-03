@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
 public class PlayerEditor extends AppCompatActivity {
 
     @Override
@@ -19,7 +20,6 @@ public class PlayerEditor extends AppCompatActivity {
     public void submitName(View view) {
         EditText text = (EditText) findViewById(R.id.name_field);
         String name = text.getText().toString();
-
         //UPDATE DB
     }
 }

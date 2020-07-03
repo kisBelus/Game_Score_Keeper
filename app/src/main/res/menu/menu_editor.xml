@@ -4,6 +4,6 @@
         android:title="Reset Score"
         android:id="@+id/reset"/>
     <item
-        android:id="@+id/player_select"
-        android:title="Select Player"/>
+        android:id="@+id/save_results"
+        android:title="Save Results"/>
 </menu>

@@ -19,8 +19,8 @@ public class ScoreBoardTwoPlayer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.score_board_two_player);
 
-        playerOne = new PlayerClass("Ayumi");
-        playerTwo = new PlayerClass("Bela");
+        playerOne = new PlayerClass("Ayumi", 1);
+        playerTwo = new PlayerClass("Bela", 2);
 
         TextView playerOneName = (TextView) findViewById(R.id.player_one_name);
         TextView playerTwoName = (TextView) findViewById(R.id.player_two_name);

@@ -7,10 +7,11 @@ public class PlayerClass {
     public String playerName;
     public int playerID;
 
-    public PlayerClass(String name) {
+    public PlayerClass(String name, int id) {
         score=0;
         points=0;
         playerName = name;
+        playerID = id;
     }
 
     public void reset(){

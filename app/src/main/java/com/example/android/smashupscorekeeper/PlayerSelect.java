@@ -29,8 +29,17 @@ public class PlayerSelect extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        players.add(new PlayerClass("Ayumi"));
-        players.add(new PlayerClass("Bela"));
+
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //players.add(new PlayerClass("Ayumi"));
+        //players.add(new PlayerClass("Ayumi"));
 
         LinearLayout playerListRoot = (LinearLayout) findViewById(R.id.player_list_root);
         for(int i = 0; i < players.size(); i++) {
@@ -67,8 +76,6 @@ public class PlayerSelect extends AppCompatActivity {
                 Toast.makeText(view.getContext(),"Click Click", Toast.LENGTH_LONG).show();
             }
         });
-
-
     }
 
     public void openScoreBoard(View view) {

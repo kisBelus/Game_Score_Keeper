@@ -36,6 +36,10 @@
             android:name=".PlayerEditor"
             android:label="@string/title_player_editor"
             android:screenOrientation="portrait" />
+        <provider
+            android:authorities="com.example.android.smashupscorekeeper"
+            android:name=".data.PlayerProvider"
+            android:exported="false"/>
     </application>
 
 </manifest>

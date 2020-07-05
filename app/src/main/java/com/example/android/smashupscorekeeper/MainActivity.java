@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initDatabase();
+        //initDatabase();
     }
 
     public void openPlayerSelect(View view){
@@ -48,12 +48,13 @@ public class MainActivity extends AppCompatActivity {
         //db.insert(PlayerContract.PlayerEntry.PLAYERS_TABLE_NAME, null, values);
 
 
-        Cursor cursor = db.rawQuery("SELECT * FROM "+ PlayerContract.PlayerEntry.PLAYERS_TABLE_NAME, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM "+ PlayerContract.GameEntry.GAME_TABLE_NAME, null);
         try{
             TextView displayView = (TextView) findViewById(R.id.db_temp);
-            int nameIndex = cursor.getColumnIndex(PlayerContract.PlayerEntry.COLUMN_PLAYER_NAME);
-            cursor.moveToNext();
-            displayView.setText("Db rows: "+cursor.getString(nameIndex));
+            //int nameIndex = cursor.getColumnIndex(PlayerContract.PlayerEntry.COLUMN_PLAYER_NAME);
+            //cursor.moveToNext();
+            //displayView.setText("Db rows: "+cursor.getString(nameIndex));
+            displayView.setText("Db rows: " +cursor.getCount());
         }finally {
             cursor.close();
         }

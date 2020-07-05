@@ -19,5 +19,11 @@ public class PlayerClass {
         points=0;
     }
 
+    public int getPlayerID(){
+        return playerID;
+    }
 
+    public String getPlayerName() {
+        return playerName;
+    }
 }

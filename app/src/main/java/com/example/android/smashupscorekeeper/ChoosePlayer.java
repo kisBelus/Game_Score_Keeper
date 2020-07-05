@@ -2,8 +2,10 @@ package com.example.android.smashupscorekeeper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,30 +31,35 @@ public class ChoosePlayer extends AppCompatActivity {
         setContentView(R.layout.choose_player);
 
         createPlayerList();
-
-
     }
 
     private void createPlayerList(){
-        //players.add(new PlayerClass("Ayumi"));
-        //players.add(new PlayerClass("Bela"));
 
-        PlayerDbHelper mDbHelper = new PlayerDbHelper(this);
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        //PlayerDbHelper mDbHelper = new PlayerDbHelper(this);
+        //SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         String[] projection = {
                 PlayerEntry._ID,
                 PlayerEntry.COLUMN_PLAYER_NAME
         };
 
-        Cursor cursor = db.query(
+        /**Cursor cursor = db.query(
                 PlayerEntry.PLAYERS_TABLE_NAME,
                 projection,
                 null,
                 null,
                 null,
                 null,
+                null);*/
+
+        //new
+        Cursor cursor = getContentResolver().query(
+                PlayerEntry.CONTENT_URI,
+                projection,
+                null,
+                null,
                 null);
+
         try {
             //get Index for columns
             int idIndex = cursor.getColumnIndex(PlayerEntry._ID);
@@ -78,9 +85,22 @@ public class ChoosePlayer extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView parent, View view, int position, long id){
-                //Here we should add the clicked player to current players, the following is for testing
-                //Toast.makeText(ChoosePlayer.this, Integer.toString(position), Toast.LENGTH_SHORT).show();
-                //players.remove(position);
+
+                //PlayerDbHelper mDbHelper = new PlayerDbHelper(view.getContext());
+                //SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+                ContentValues values = new ContentValues();
+                values.put(GameEntry._ID, players.get(position).playerID);
+                values.put(GameEntry.COLUMN_PLAYER_NAME, players.get(position).playerName);
+                //Long newID = db.insert(GameEntry.GAME_TABLE_NAME, null, values);
+                Uri newUri = getContentResolver().insert(GameEntry.CONTENT_URI, values);
+
+                if(newUri == null){
+                    Toast.makeText(view.getContext(), "Sorry something went wrong", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(view.getContext(),"Welcome "+players.get(position).playerName, Toast.LENGTH_LONG).show();
+                }
+
                 finish();
             }
         });

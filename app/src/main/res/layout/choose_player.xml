@@ -14,7 +14,7 @@
         android:src="@drawable/background" />
 
     <ListView
-        android:id="@+id/list"
+        android:id="@+id/list_choose_player"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

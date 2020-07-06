@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private void initDatabase(){
         PlayerDbHelper mDbHelper = new PlayerDbHelper(this);
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
+/**
         //ContentValues values = new ContentValues();
         //values.put(PlayerContract.PlayerEntry.COLUMN_PLAYER_NAME, "Ayumi");
         //db.insert(PlayerContract.PlayerEntry.PLAYERS_TABLE_NAME, null, values);
@@ -57,6 +57,6 @@ public class MainActivity extends AppCompatActivity {
             displayView.setText("Db rows: " +cursor.getCount());
         }finally {
             cursor.close();
-        }
+        }*/
     }
 }

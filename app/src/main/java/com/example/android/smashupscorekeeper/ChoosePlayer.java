@@ -78,7 +78,7 @@ public class ChoosePlayer extends AppCompatActivity {
         //custom ArrayAdapter for playerClass is used to create our adapter for the list view
         PlayerAdapter adapter = new PlayerAdapter(ChoosePlayer.this, players);
         //here we hook our ListView from xml to listView by referencing its id in choose_player.xml
-        ListView listView = (ListView) findViewById(R.id.list);
+        ListView listView = (ListView) findViewById(R.id.list_choose_player);
         //here we set the adapter
         listView.setAdapter(adapter);
         //here we set the onClickListener

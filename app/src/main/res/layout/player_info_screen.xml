@@ -20,6 +20,7 @@
         android:gravity="center_vertical">
 
         <TextView
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="0.8"
@@ -31,12 +32,13 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="30dp"
-            android:text="Ayumi"
+            android:text="Name"
             android:textAllCaps="true"
             android:textColor="@android:color/white"
             android:textSize="30sp" />
 
         <TextView
+            android:id="@+id/wins"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="0.8"
@@ -47,12 +49,13 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_marginBottom="20dp"
-            android:text="wins: 12"
+            android:text="wins: "
             android:textAllCaps="true"
             android:textColor="@android:color/white"
             android:textSize="30sp" />
 
         <TextView
+            android:id="@+id/losses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="0.8"
@@ -63,28 +66,13 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_marginBottom="20dp"
-            android:text="Loses: 10"
+            android:text="Loses: "
             android:textAllCaps="true"
             android:textColor="@android:color/white"
             android:textSize="30sp" />
 
         <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:alpha="0.8"
-        android:background="@android:color/darker_gray"
-        android:gravity="center_horizontal"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginBottom="20dp"
-        android:text="Ratio: 1.2"
-        android:textAllCaps="true"
-        android:textColor="@android:color/white"
-        android:textSize="30sp" />
-
-        <TextView
+            android:id="@+id/ratio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="0.8"
@@ -95,7 +83,24 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_marginBottom="20dp"
-            android:text="Streak: 4"
+            android:text="Ratio: "
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/streak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.8"
+            android:background="@android:color/darker_gray"
+            android:gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="20dp"
+            android:text="Streak: "
             android:textAllCaps="true"
             android:textColor="@android:color/white"
             android:textSize="30sp" />

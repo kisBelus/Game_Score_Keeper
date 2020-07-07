@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import com.example.android.smashupscorekeeper.data.PlayerContract;
@@ -14,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.text.style.BackgroundColorSpan;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -23,9 +25,13 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static android.graphics.Color.*;
+
 public class PlayerSelect extends AppCompatActivity {
 
     ArrayList<PlayerClass> players = new ArrayList<PlayerClass>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +40,14 @@ public class PlayerSelect extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
-
-
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PlayerSelect.this, PlayerEditor.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -110,9 +120,9 @@ public class PlayerSelect extends AppCompatActivity {
                 }
             });
             playerTextView.setText(players.get(i).playerName);
-            playerTextView.setBackgroundColor(Color.LTGRAY);
+            playerTextView.setBackgroundColor(LTGRAY);
             playerTextView.setAlpha((float) 0.8);
-            playerTextView.setTextColor(Color.BLACK);
+            playerTextView.setTextColor(BLACK);
             playerTextView.setGravity(Gravity.CENTER);
             playerTextView.setAllCaps(true);
             playerTextView.setPadding(0, getApplicationContext().getResources().getDimensionPixelSize(R.dimen.dp_20), 0, getApplicationContext().getResources().getDimensionPixelSize(R.dimen.dp_20));
@@ -120,32 +130,29 @@ public class PlayerSelect extends AppCompatActivity {
             param.setMargins(0, 0, 0, getApplicationContext().getResources().getDimensionPixelSize(R.dimen.dp_20));
             playerTextView.setLayoutParams(param);
             playerListRoot.addView(playerTextView);
-
         }
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PlayerSelect.this, PlayerEditor.class);
-                startActivity(intent);
-            }
-        });
-
-        //Test Listener setup
-        TextView test = (TextView) findViewById(R.id.test_text);
-        //Set Listener on the view
-        test.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Toast.makeText(view.getContext(),"Click Click", Toast.LENGTH_LONG).show();
-            }
-        });
+        buttonFlipper();
     }
 
     public void openScoreBoard(View view) {
-        Intent intent = new Intent(PlayerSelect.this, ScoreBoardTwoPlayer.class);
-        startActivity(intent);
+        switch (players.size()) {
+            case 2:
+                Intent intentTwo = new Intent(PlayerSelect.this, ScoreBoardTwoPlayer.class);
+                startActivity(intentTwo);
+                break;
+            case 3:
+                Intent intentThree = new Intent(PlayerSelect.this, ScoreBoardThreePlayer.class);
+                startActivity(intentThree);
+                break;
+            case 4:
+                Intent intentFour = new Intent(PlayerSelect.this, ScoreBoardFourPlayer.class);
+                startActivity(intentFour);
+                break;
+            default:
+                break;
+        }
+        finish();
     }
 
     public void openChoosePlayer(View view){
@@ -160,5 +167,24 @@ public class PlayerSelect extends AppCompatActivity {
                 new String[]{Integer.toString(id)}
 
         );
+    }
+
+    private void buttonFlipper(){
+        Button startButton = (Button) findViewById(R.id.start_button);
+        Button startButtonOff = (Button) findViewById(R.id.start_button_off);
+        Button selectPlayerButton = (Button) findViewById(R.id.select_players_button);
+        if(players.size()>1){
+            startButton.setVisibility(View.VISIBLE);
+            startButtonOff.setVisibility(View.INVISIBLE);
+        }else{
+            startButton.setVisibility(View.INVISIBLE);
+            startButtonOff.setVisibility(View.VISIBLE);
+        }
+        if(players.size()>3){
+            selectPlayerButton.setVisibility(View.INVISIBLE);
+        }else{
+            selectPlayerButton.setVisibility(View.VISIBLE);
+        }
+
     }
 }

@@ -17,28 +17,19 @@ import com.example.android.smashupscorekeeper.data.PlayerContract;
 import com.example.android.smashupscorekeeper.data.PlayerContract.GameEntry;
 import com.example.android.smashupscorekeeper.data.PlayerContract.PlayerEntry;
 
-public class ScoreBoardTwoPlayer extends AppCompatActivity {
+public class ScoreBoardThreePlayer extends AppCompatActivity {
 
-    PlayerClass playerOne;
-    PlayerClass playerTwo;
-    PlayerClass[] players = new PlayerClass[2];
+    PlayerClass[] players = new PlayerClass[3];
     Boolean checkOnce = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.score_board_two_player);
+        setContentView(R.layout.score_board_three_player);
 
         players[0] = new PlayerClass("default 1", 1);
         players[1] = new PlayerClass("default 2", 2);
-
-/**        playerOne = new PlayerClass("Ayumi", 1);
-        playerTwo = new PlayerClass("Bela", 2);
-
-        TextView playerOneName = (TextView) findViewById(R.id.player_one_name);
-        TextView playerTwoName = (TextView) findViewById(R.id.player_two_name);
-        playerOneName.setText(playerOne.playerName);
-        playerTwoName.setText(playerTwo.playerName);*/
+        players[2] = new PlayerClass("default 3", 3);
 
         getPlayerData();
         drawPlayerData();
@@ -78,8 +69,10 @@ public class ScoreBoardTwoPlayer extends AppCompatActivity {
     private void drawPlayerData(){
         TextView playerOneName = (TextView) findViewById(R.id.player_one_name);
         TextView playerTwoName = (TextView) findViewById(R.id.player_two_name);
+        TextView playerThreeName = (TextView) findViewById(R.id.player_three_name);
         playerOneName.setText(players[0].playerName);
         playerTwoName.setText(players[1].playerName);
+        playerThreeName.setText(players[2].playerName);
         scoreUpdater();
     }
 
@@ -109,6 +102,7 @@ public class ScoreBoardTwoPlayer extends AppCompatActivity {
     private void reset(){
         players[0].reset();
         players[1].reset();
+        players[2].reset();
         scoreUpdater();
     }
 
@@ -132,6 +126,16 @@ public class ScoreBoardTwoPlayer extends AppCompatActivity {
         }
     }
 
+    public void increasePlayerThree(View v){
+        TextView points = (TextView) findViewById(R.id.player_three_score_change);
+        players[2].points++;
+        if(players[2].points>0){
+            points.setText("+"+players[2].points);
+        }else{
+            points.setText(""+players[2].points);
+        }
+    }
+
     public void decreasePlayerOne(View v){
         TextView points = (TextView) findViewById(R.id.player_one_score_change);
         players[0].points--;
@@ -151,6 +155,17 @@ public class ScoreBoardTwoPlayer extends AppCompatActivity {
             points.setText(""+players[1].points);
         }
     }
+
+    public void decreasePlayerThree(View v){
+        TextView points = (TextView) findViewById(R.id.player_three_score_change);
+        players[2].points--;
+        if(players[2].points>0){
+            points.setText("+"+players[2].points);
+        }else{
+            points.setText(""+players[2].points);
+        }
+    }
+
     public void updateScore(View v){
         scoreUpdater();
     }
@@ -160,19 +175,25 @@ public class ScoreBoardTwoPlayer extends AppCompatActivity {
         TextView pointsA = (TextView) findViewById(R.id.player_one_score_change);
         TextView scoreB = (TextView) findViewById(R.id.player_two_score);
         TextView pointsB = (TextView) findViewById(R.id.player_two_score_change);
+        TextView scoreC = (TextView) findViewById(R.id.player_three_score);
+        TextView pointsC = (TextView) findViewById(R.id.player_three_score_change);
         players[0].score+=players[0].points;
         players[1].score+=players[1].points;
+        players[2].score+=players[2].points;
         players[0].points=0;
         players[1].points=0;
+        players[2].points=0;
         pointsA.setText(""+players[0].points);
         scoreA.setText(""+players[0].score);
         pointsB.setText(""+players[1].points);
         scoreB.setText(""+players[1].score);
+        pointsC.setText(""+players[2].points);
+        scoreC.setText(""+players[2].score);
         updateGameDb();
         if(checkOnce){
-            if(players[0].score>14 || players[1].score>14){
+            if(players[0].score>14 || players[1].score>14 || players[2].score>14){
                 checkOnce = false;
-                AlertDialog.Builder builder = new AlertDialog.Builder(ScoreBoardTwoPlayer.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(ScoreBoardThreePlayer.this);
                 builder.setMessage("Victory!! \n Save your results?");
                 builder.setCancelable(true);
 
@@ -196,7 +217,7 @@ public class ScoreBoardTwoPlayer extends AppCompatActivity {
 
     private void updateGameDb(){
 
-        for(int i=0; i<2; i++){
+        for(int i=0; i<3; i++){
             updatePlayerScore(players[i].score, players[i].playerID);
         }
 

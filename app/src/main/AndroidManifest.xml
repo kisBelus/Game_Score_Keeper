@@ -9,11 +9,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChoosePlayer" android:label="@string/title_player_select" android:screenOrientation="portrait"></activity>
-        <activity android:name=".LeaderBoard" android:label="@string/title_leader_board" android:screenOrientation="portrait" />
-        <activity android:name=".PlayerInfoScreen" android:label="@string/title_player_info_screen" android:screenOrientation="portrait" />
-        <activity android:name=".PlayerInfoSelect" android:label="@string/title_player_info_selector"  android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity" android:label="@string/app_name" android:screenOrientation="portrait">
+        <activity android:name=".EditName"></activity>
+        <activity android:name=".ScoreBoardFourPlayer" />
+        <activity android:name=".ScoreBoardThreePlayer" />
+        <activity
+            android:name=".ChoosePlayer"
+            android:label="@string/title_player_select"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LeaderBoard"
+            android:label="@string/title_leader_board"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PlayerInfoScreen"
+            android:label="@string/title_player_info_screen"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PlayerInfoSelect"
+            android:label="@string/title_player_info_selector"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,22 +42,20 @@
             android:name=".ScoreBoardTwoPlayer"
             android:label="@string/title_score_board"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".PlayerSelect"
             android:label="@string/title_player_select"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PlayerEditor"
             android:label="@string/title_player_editor"
             android:screenOrientation="portrait" />
+
         <provider
-            android:authorities="com.example.android.smashupscorekeeper"
             android:name=".data.PlayerProvider"
-            android:exported="false"/>
+            android:authorities="com.example.android.smashupscorekeeper"
+            android:exported="false" />
     </application>
 
 </manifest>

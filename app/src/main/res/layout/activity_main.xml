@@ -65,21 +65,6 @@
             android:textSize="30sp"
             android:onClick="openPlayerInfoSelect"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:alpha="0.8"
-            android:background="@android:color/darker_gray"
-            android:gravity="center_horizontal"
-            android:paddingTop="50dp"
-            android:paddingBottom="50dp"
-            android:layout_margin="30dp"
-            android:text="DB Info"
-            android:textAllCaps="true"
-            android:textColor="@android:color/white"
-            android:textSize="30sp"
-            android:onClick="openPlayerInfoSelect"
-            android:id="@+id/db_temp"/>
 
     </LinearLayout>
 

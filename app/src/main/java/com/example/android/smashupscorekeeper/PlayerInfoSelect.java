@@ -28,6 +28,11 @@ public class PlayerInfoSelect extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.player_info_select);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         createPlayerList();
     }
 
@@ -73,12 +78,12 @@ public class PlayerInfoSelect extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView parent, View view, int position, long id){
 
-                Toast.makeText(view.getContext(),"Getting "+players.get(position).playerName, Toast.LENGTH_LONG).show();
+                //Toast.makeText(view.getContext(),"1:"+players.get(position).playerID, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(PlayerInfoSelect.this, PlayerInfoScreen.class );
                 intent.putExtra("PLAYER_ID_EXTRA", players.get(position).playerID);
                 startActivity(intent);
-                //finish();
+                finish();
             }
         });
     }

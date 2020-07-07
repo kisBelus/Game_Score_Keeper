@@ -18,20 +18,26 @@ import java.text.DecimalFormat;
 public class PlayerInfoScreen extends AppCompatActivity {
 
     private static DecimalFormat df = new DecimalFormat("0.0");
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.player_info_screen);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         createPlayerStats();
     }
 
     private void createPlayerStats(){
         Intent intentExtra = getIntent();
-        int id = intentExtra.getIntExtra("PLAYER_ID_EXTRA", -1);
+        id = intentExtra.getIntExtra("PLAYER_ID_EXTRA", -1);
 
-        Toast.makeText(PlayerInfoScreen.this,""+id, Toast.LENGTH_LONG).show();
+        //Toast.makeText(PlayerInfoScreen.this,"2:"+id, Toast.LENGTH_LONG).show();
 
         String[] projection = {
                 PlayerEntry.COLUMN_PLAYER_NAME,
@@ -58,7 +64,7 @@ public class PlayerInfoScreen extends AppCompatActivity {
         int totalIndex = cursor.getColumnIndex(PlayerEntry.COLUMN_PLAYER_TOTAL);
         int streakIndex = cursor.getColumnIndex(PlayerEntry.COLUMN_PLAYER_STREAK);
         cursor.moveToFirst();
-        Toast.makeText(PlayerInfoScreen.this,""+cursor.getColumnCount(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(PlayerInfoScreen.this,""+cursor.getColumnCount(), Toast.LENGTH_LONG).show();
 
         String name = cursor.getString(nameIndex);
         int wins = cursor.getInt(winIndex);
@@ -104,12 +110,27 @@ public class PlayerInfoScreen extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to a click on the "Save" menu option
             case R.id.delete:
-                //delete();
+                delete();
                 return true;
             case R.id.edit_name:
-                //editName();
+                editName();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void delete(){
+        String selection = PlayerEntry._ID + "=?";
+        String[] selectionArgs = {Integer.toString(id)};
+        getContentResolver().delete(PlayerEntry.CONTENT_URI, selection, selectionArgs);
+        finish();
+    }
+
+    private void editName(){
+        Intent intent = new Intent(PlayerInfoScreen.this, EditName.class);
+        intent.putExtra("PLAYER_ID_EXTRA", id);
+        startActivity(intent);
+    }
+
+
 }
